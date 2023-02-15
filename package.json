@@ -1,0 +1,52 @@
+{
+  "name": "ts-node",
+  "version": "0.0.1",
+  "description": "Setup for Node BackEnd with Typescript",
+  "scripts": {
+    "debug": "nodemon --inspect",
+    "start::local": "node ./dist/server.js",
+    "start": "node ./dist/server.js",
+    "build": "rm -rf ./dist && tsc --project ./tsconfig.json ",
+    "prod": "npm run build && npm run start",
+    "postinstall": "tsc --project ./tsconfig.json ",
+    "lint": "eslint --fix src/*",
+    "test": "jest",
+    "test::coverage": "jest --collectCoverage"
+  },
+  "keywords": [
+    "typescript",
+    "node",
+    "setup"
+  ],
+  "author": "Cristutz",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "*"
+  },
+  "devDependencies": {
+    "@tsconfig/node-lts-strictest": "*",
+    "@tsconfig/node-lts-strictest-esm": "*",
+    "@types/jest": "*",
+    "@types/node": "*",
+    "@typescript-eslint/eslint-plugin": "*",
+    "@typescript-eslint/parser": "*",
+    "eslint": "*",
+    "eslint-config-prettier": "*",
+    "eslint-plugin-prettier": "*",
+    "jest": "*",
+    "nodemon": "*",
+    "prettier": "*",
+    "ts-jest": "*",
+    "ts-node": "*",
+    "typescript": "*"
+  },
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/musatcristian/node-ts-setup.git"
+  },
+  "bugs": {
+    "url": "https://github.com/musatcristian/node-ts-setup/issues"
+  },
+  "homepage": "https://github.com/musatcristian/node-ts-setup#readme"
+}

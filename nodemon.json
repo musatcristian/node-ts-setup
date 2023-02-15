@@ -1,0 +1,21 @@
+{
+  "ext": "ts json",
+  "delay": 100,
+  "ignore": [
+    ".git",
+    "node_modules/**/node_modules",
+    "tests/**/*"
+  ],
+  "restartable": "rs",
+  "verbose": true,
+  "execMap": {
+    "ts": "node -r dotenv/config --require ts-node/register"
+  },
+  "watch": [
+    "src/"
+  ],
+  "env": {
+    "NODE_ENV": "development"
+  },
+  "args": {}
+}
