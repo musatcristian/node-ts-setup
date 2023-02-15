@@ -1,6 +1,6 @@
 {
   "ext": "ts json",
-  "delay": 100,
+  "delay": 3,
   "ignore": [
     ".git",
     "node_modules/**/node_modules",
@@ -9,13 +9,12 @@
   "restartable": "rs",
   "verbose": true,
   "execMap": {
-    "ts": "node -r dotenv/config --require ts-node/register"
+    "ts": "ts-node -r dotenv/config"
   },
   "watch": [
     "src/"
   ],
   "env": {
     "NODE_ENV": "development"
-  },
-  "args": {}
+  }
 }

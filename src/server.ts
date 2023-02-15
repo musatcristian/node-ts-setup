@@ -1,5 +1,9 @@
 import { Cipher } from "crypto";
 import { HELPER } from "./utils/index.js";
 
-console.info(HELPER);
+const a = () => {
+  console.info(HELPER, process.env.SECRET);
+}
+
+a();
 Cipher;

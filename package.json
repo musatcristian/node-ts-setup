@@ -2,9 +2,10 @@
   "name": "ts-node",
   "version": "0.0.1",
   "description": "Setup for Node BackEnd with Typescript",
+  "main": "./src/server.ts",
   "scripts": {
-    "debug": "nodemon --inspect",
-    "start::local": "node ./dist/server.js",
+    "debug": "node --watch --inspect --loader ts-node/esm --require dotenv/config ./src/server.ts",
+    "nodemon": "nodemon",
     "start": "node ./dist/server.js",
     "build": "rm -rf ./dist && tsc --project ./tsconfig.json ",
     "prod": "npm run build && npm run start",
@@ -24,8 +25,6 @@
     "dotenv": "*"
   },
   "devDependencies": {
-    "@tsconfig/node-lts-strictest": "*",
-    "@tsconfig/node-lts-strictest-esm": "*",
     "@types/jest": "*",
     "@types/node": "*",
     "@typescript-eslint/eslint-plugin": "*",
