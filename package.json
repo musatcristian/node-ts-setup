@@ -35,6 +35,7 @@
     "jest": "*",
     "nodemon": "*",
     "prettier": "*",
+    "to-array": "^0.1.4",
     "ts-jest": "*",
     "ts-node": "*",
     "typescript": "*"

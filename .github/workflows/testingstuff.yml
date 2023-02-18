@@ -3,7 +3,8 @@ name: testing stuff
 on:
   push:
     branches:
-      # - 'ticket/MAVRCK-12202/publish-fix'
+      - '*'
+      - '*/*'
       - '!release'
       - '!main'
 
