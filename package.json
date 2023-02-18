@@ -7,9 +7,9 @@
     "debug": "node --watch --inspect --loader ts-node/esm --require dotenv/config ./src/server.ts",
     "nodemon": "nodemon",
     "start": "node ./dist/server.js",
-    "build": "rm -rf ./dist && tsc --project ./tsconfig.json ",
+    "build": "rm -rf ./dist && tsc --project ./tsconfig.json",
     "prod": "npm run build && npm run start",
-    "postinstall": "tsc --project ./tsconfig.json ",
+    "dudu::postinstall": "tsc --project ./tsconfig.json ",
     "lint": "eslint --fix src/*",
     "test": "jest",
     "test::coverage": "jest --collectCoverage"
