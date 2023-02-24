@@ -1,4 +1,5 @@
 {
+  "root": true,
   "parser": "@typescript-eslint/parser",
   "plugins": [
     "prettier",
@@ -9,10 +10,10 @@
     "node": true
   },
   "extends": [
-    "prettier",
-    "plugin:prettier/recommended",
     "eslint:recommended",
-    "plugin:@typescript-eslint/recommended"
+    "plugin:@typescript-eslint/recommended",
+    "prettier",
+    "plugin:prettier/recommended"
   ],
   "rules": {
     "prettier/prettier": "warn",
@@ -20,8 +21,8 @@
     "no-unused-vars": "off",
     "@typescript-eslint/no-unused-vars": "warn",
     "@typescript-eslint/no-empty-function": [
-      "off"
+      "warn"
     ],
-    "@typescript-eslint/no-non-null-assertion": "off"
+    "@typescript-eslint/no-non-null-assertion": "warn"
   }
 }

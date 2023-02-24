@@ -4,7 +4,8 @@
   "ignore": [
     ".git",
     "node_modules/**/node_modules",
-    "tests/**/*"
+    "tests/**/*",
+    "src/**/*.js"
   ],
   "restartable": "rs",
   "verbose": true,
@@ -12,7 +13,7 @@
     "ts": "ts-node -r dotenv/config"
   },
   "watch": [
-    "src/"
+    "src/**/*.ts"
   ],
   "env": {
     "NODE_ENV": "development"

@@ -4,13 +4,12 @@
   "description": "Setup for Node BackEnd with Typescript",
   "main": "./src/server.ts",
   "scripts": {
-    "debug": "node --watch --inspect --loader ts-node/esm --require dotenv/config ./src/server.ts",
-    "nodemon": "nodemon",
+    "debug": "node --inspect --loader ts-node/esm --require dotenv/config ./src/server.ts",
+    "dev": "nodemon",
     "start": "node ./dist/server.js",
     "build": "rm -rf ./dist && tsc --project ./tsconfig.json",
-    "prod": "npm run build && npm run start",
-    "dudu::postinstall": "tsc --project ./tsconfig.json ",
-    "lint": "eslint --fix src/*",
+    "prod": "npm run build && npm start",
+    "lint": "eslint --fix ./**/*.ts",
     "test": "jest",
     "test::coverage": "jest --collectCoverage"
   },
