@@ -1,6 +1,11 @@
 module.exports = {
   bail: 1,
-  collectCoverageFrom: ["<rootDir>/tests/*"],
+  collectCoverageFrom: [
+    "<rootDir>/src/**",
+    "!node_modules",
+    "!**/node_modules/**",
+    "!**/*.test*",
+  ],
   coverageDirectory: "./__coverage__",
   displayName: "NodeJs Github OAuth",
   moduleFileExtensions: ["js", "ts"],

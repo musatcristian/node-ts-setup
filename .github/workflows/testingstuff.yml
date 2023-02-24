@@ -3,9 +3,10 @@ name: testing stuff
 on:
   push:
     branches:
-      # - 'ticket/MAVRCK-12202/publish-fix'
-      - '!release'
-      - '!main'
+      - "*"
+      - "*/*"
+      - "!release"
+      - "!main"
 
   workflow_dispatch:
 
@@ -30,7 +31,7 @@ jobs:
       - name: Install dependencies
         if: steps.cache_all.outputs.cache-hit != 'true'
         run: npm ci
-  
+
   lint:
     needs: setup
     runs-on: ubuntu-latest
@@ -106,7 +107,7 @@ jobs:
         run: echo "building...."
 
   # publish:
-  #   needs: build 
+  #   needs: build
   #   runs-on: ubuntu-latest
   #   strategy:
   #     matrix:
