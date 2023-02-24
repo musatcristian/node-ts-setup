@@ -14,7 +14,7 @@ module.exports = {
   rootDir: "./",
   roots: ["./tests"],
   testEnvironment: "node",
-  testRegex: "^.*test\\.(ts|tsx)$",
+  testRegex: "^.*test\\.ts$",
   transform: {
     "^.+\\.(ts|tsx)$": "ts-jest",
   },

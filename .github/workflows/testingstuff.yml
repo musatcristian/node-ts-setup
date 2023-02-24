@@ -77,9 +77,8 @@ jobs:
       - name: Install dependencies
         if: steps.cache_all.outputs.cache-hit != 'true'
         run: npm ci
-      # - TODO (MAVRCK-12203): add tests back when we fix them
-      # - name: Test
-      #   run: npm test
+      - name: Test
+        run: npm test
 
   build:
     needs: test
