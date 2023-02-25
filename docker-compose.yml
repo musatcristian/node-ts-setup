@@ -1,0 +1,12 @@
+services:
+  ts-node-setup:
+    image: cristutz84/ts-node-image
+    container_name: ts-node-setup
+    command: npm run dev
+    ports:
+      - 4001:80
+    working_dir: /ts-node-setup
+    volumes:
+      - ./:/ts-node-setup
+    environment:
+      SECRET: udududu

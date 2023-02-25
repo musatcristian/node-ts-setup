@@ -2,14 +2,14 @@ FROM node:18-alpine
 
 WORKDIR /ts-node-setup
 
-COPY package.json package-lock.json .
+COPY package.json package-lock.json ./ts-node-setup
 
-RUN npm install
+RUN npm ci
 
 COPY . .
 
-RUN npm run build
+# RUN npm run build
 
-EXPOSE 4000
+EXPOSE 80
 
-CMD ["node", "dist/server.js"]
+CMD ["node", "dist/src/server.js"]
