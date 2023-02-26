@@ -16,7 +16,7 @@ module.exports = {
   testEnvironment: "node",
   testRegex: "^.*test\\.ts$",
   transform: {
-    "^.+\\.(ts|tsx)$": "ts-jest",
+    "^.+\\.ts$": "ts-jest",
   },
   verbose: true,
 };

@@ -5,6 +5,7 @@ import { startStandaloneServer } from "@apollo/server/standalone";
 import { getDirName } from "./utils/dirname.js";
 
 const dirName = getDirName(import.meta.url);
+
 const typeDefs = readFileSync(`${dirName}/schema.graphql`, {
   encoding: "utf-8",
 });
@@ -36,7 +37,7 @@ const server = new ApolloServer({
 //  2. installs your ApolloServer instance as middleware
 //  3. prepares your app to handle incoming requests
 const { url } = await startStandaloneServer(server, {
-  listen: { port: 4000 },
+  listen: { port: 80 },
 });
 
 console.log(`🚀  Server ready at: ${url}`);
