@@ -25,7 +25,8 @@
   "dependencies": {
     "@apollo/server": "*",
     "dotenv": "*",
-    "graphql": "*"
+    "graphql": "*",
+    "mongodb": "*"
   },
   "devDependencies": {
     "@types/jest": "*",
