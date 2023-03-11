@@ -1,6 +1,6 @@
 import { Db, MongoClient, ServerApiVersion } from "mongodb";
 
-import { DB_NAME } from '../constants/index.js';
+import { DB_NAME } from "../constants/index.js";
 
 const mongoURI_default = `mongodb://${DB_NAME}:27001`;
 
@@ -15,9 +15,9 @@ export let mainDb: Db;
 export const openConnection = async () => {
   try {
     if (!DB_NAME) {
-      const err = new Error('Env error');
+      const err = new Error("Env error");
 
-      throw err.message = 'Database name variable not found';
+      throw (err.message = "Database name variable not found");
     }
     console.log("Connecting to database...");
     const connection = await mongoPool.connect();
