@@ -11,7 +11,7 @@ services:
     networks:
       - nodemongo
     environment:
-      DB_NAME: db-container
+      DB_NAME: mongodb://db-container
 
 networks:
   nodemongo:

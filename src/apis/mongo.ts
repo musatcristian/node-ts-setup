@@ -2,7 +2,7 @@ import { Db, MongoClient, ServerApiVersion } from "mongodb";
 
 import { DB_NAME } from "../constants/index.js";
 
-const mongoURI_default = `mongodb://${DB_NAME}:27001`;
+const mongoURI_default = `${DB_NAME}:27001`;
 
 export const mongoPool = new MongoClient(mongoURI_default, {
   connectTimeoutMS: 5000,
