@@ -37,17 +37,3 @@ export async function listDatabases() {
   console.log("Databases:");
   databasesList.databases.forEach((db) => console.log(` - ${db.name}`));
 }
-
-export async function main() {
-  try {
-    // Connect to the MongoDB cluster
-    await mongoPool.connect();
-
-    // Make the appropriate DB calls
-    await listDatabases();
-  } catch (e) {
-    console.error(e);
-  } finally {
-    await mongoPool.close();
-  }
-}
