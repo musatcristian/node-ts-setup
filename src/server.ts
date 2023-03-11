@@ -2,8 +2,9 @@ import { readFileSync } from "fs";
 
 import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
+
 import { getDirName } from "./utils/dirname.js";
-import { openConnection } from "./apis/mongo.js";
+import { openConnection, listDatabases } from "./apis/mongo.js";
 
 const dirName = getDirName(import.meta.url);
 
@@ -42,4 +43,4 @@ const { url } = await startStandaloneServer(server, {
 });
 
 console.log(`🚀  Server ready at: ${url}`);
-openConnection();
+openConnection().then(listDatabases);

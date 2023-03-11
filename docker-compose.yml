@@ -8,5 +8,12 @@ services:
     working_dir: /ts-node-setup
     volumes:
       - ./:/ts-node-setup
+    networks:
+      - nodemongo
     environment:
-      SECRET: udududu
+      DB_NAME: mongodb://db-container
+
+networks:
+  nodemongo:
+    name: nodemongo
+    external: true
