@@ -1,28 +1,38 @@
-import { MongoClient, ServerApiVersion } from "mongodb";
+import { Db, MongoClient, ServerApiVersion } from "mongodb";
 
-const mongoURI_default = "mongodb://127.0.0.1:27001";
+import { DB_NAME } from '../constants/index.js';
 
-export const mongoClient = new MongoClient(mongoURI_default, {
+const mongoURI_default = `mongodb://${DB_NAME}:27001`;
+
+export const mongoPool = new MongoClient(mongoURI_default, {
   connectTimeoutMS: 5000,
   serverApi: ServerApiVersion.v1,
-  keepAlive: true,
+  keepAlive: false,
 });
+
+export let mainDb: Db;
 
 export const openConnection = async () => {
   try {
+    if (!DB_NAME) {
+      const err = new Error('Env error');
+
+      throw err.message = 'Database name variable not found';
+    }
     console.log("Connecting to database...");
-    await mongoClient.connect();
+    const connection = await mongoPool.connect();
+    mainDb = connection.db();
     console.log("Connected to Local Mongod process");
   } catch (e) {
     console.error("Connection error:", e);
-    mongoClient.close();
+    mongoPool.close();
     console.warn("Exiting...");
     process.exit();
   }
 };
 
-export async function listDatabases(client: MongoClient) {
-  const databasesList = await client.db().admin().listDatabases();
+export async function listDatabases() {
+  const databasesList = await mainDb.admin().listDatabases();
 
   console.log("Databases:");
   databasesList.databases.forEach((db) => console.log(` - ${db.name}`));
@@ -31,13 +41,13 @@ export async function listDatabases(client: MongoClient) {
 export async function main() {
   try {
     // Connect to the MongoDB cluster
-    await mongoClient.connect();
+    await mongoPool.connect();
 
     // Make the appropriate DB calls
-    await listDatabases(mongoClient);
+    await listDatabases();
   } catch (e) {
     console.error(e);
   } finally {
-    await mongoClient.close();
+    await mongoPool.close();
   }
 }
