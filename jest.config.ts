@@ -1,5 +1,6 @@
 module.exports = {
   bail: 1,
+  cacheDirectory: "/tmp/jest_rt",
   collectCoverageFrom: [
     "<rootDir>/src/**",
     "!node_modules",
@@ -7,7 +8,7 @@ module.exports = {
     "!**/*.test*",
   ],
   coverageDirectory: "./__coverage__",
-  displayName: "NodeJs Github OAuth",
+  displayName: "GraphQL server with local dev env",
   moduleFileExtensions: ["js", "ts"],
   preset: "ts-jest",
   prettierPath: "./node_modules/prettier",

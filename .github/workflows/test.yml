@@ -7,54 +7,16 @@ on:
       - "*/*"
       - "!release"
       - "!main"
-
   workflow_dispatch:
+  workflow_call:
 
 jobs:
   setup:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Setup Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-      - name: Cache node_modules
-        id: cache_all
-        uses: actions/cache@v3
-        with:
-          path: |
-            ~/.npm
-            node_modules
-          key: cache-id_${{ hashFiles('**/package-lock.json') }}
-      - name: Install dependencies
-        if: steps.cache_all.outputs.cache-hit != 'true'
-        run: npm ci
+    uses: ./.github/workflows/setup.yml
 
   lint:
     needs: setup
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Setup Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-      - name: Cache node_modules
-        id: cache_all
-        uses: actions/cache@v3
-        with:
-          path: |
-            ~/.npm
-            node_modules
-          key: cache-id_${{ hashFiles('**/package-lock.json') }}
-      - name: Install dependencies
-        if: steps.cache_all.outputs.cache-hit != 'true'
-        run: npm ci
-      - name: Lint
-        run: npm run lint
+    uses: ./.github/workflows/lint.yml
 
   test:
     needs: lint
@@ -71,37 +33,42 @@ jobs:
         uses: actions/cache@v3
         with:
           path: |
-            ~/.npm
             node_modules
-          key: cache-id_${{ hashFiles('**/package-lock.json') }}
+          key: install-id_${{ hashFiles('**/package-lock.json') }}
       - name: Install dependencies
         if: steps.cache_all.outputs.cache-hit != 'true'
         run: npm ci
-      - name: Test
-        run: npm test
+      - name: Cache Jest dependencies
+        id: cache_jest_dependencies
+        uses: actions/cache@v3
+        with:
+          path: /tmp/jest_rt
+          key: jest_cache_id_${{ hashFiles('**/package-lock.json') }}
+      - name: Run tests
+        run: npm run test:ci -- --maxWorkers=4
 
   build:
     needs: test
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Setup Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-      - name: Cache node_modules
-        id: cache_all
-        uses: actions/cache@v3
-        with:
-          path: |
-            ~/.npm
-            node_modules
-          key: cache-id_${{ hashFiles('**/package-lock.json') }}
-      - name: Install dependencies
-        if: steps.cache_all.outputs.cache-hit != 'true'
-        run: npm ci
+      # - name: Checkout
+      #   uses: actions/checkout@v3
+      # - name: Setup Node
+      #   uses: actions/setup-node@v3
+      #   with:
+      #     node-version: 18
+      # - name: Cache node_modules
+      #   id: cache_all
+      #   uses: actions/cache@v3
+      #   with:
+      #     path: |
+      #       ~/.npm
+      #       node_modules
+      #     key: cache-id_${{ hashFiles('**/package-lock.json') }}
+      # - name: Install dependencies
+      #   if: steps.cache_all.outputs.cache-hit != 'true'
+      #   run: npm ci
       - name: Build resources
         run: echo "building...."
 
