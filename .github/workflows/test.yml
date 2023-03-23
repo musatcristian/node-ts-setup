@@ -1,4 +1,4 @@
-name: testing stuff
+name: Test and Cache Jest
 
 on:
   workflow_dispatch:

@@ -1,4 +1,4 @@
-name: testing stuff
+name: Publish
 
 on:
   push:
