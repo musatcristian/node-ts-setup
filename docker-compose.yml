@@ -1,6 +1,8 @@
 services:
   ts-node-setup:
     image: cristutz84/ts-node-image
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
     container_name: ts-node-setup
     command: npm run dev
     ports:
